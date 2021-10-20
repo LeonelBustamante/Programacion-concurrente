@@ -1,5 +1,11 @@
 package TrabajoPractico5;
 
-public class Perro extends Animal {
+public class Perro implements Runnable {
+
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+
+    }
 
 }

@@ -1,22 +1,15 @@
-package TrabajoPractico5;
+package Apuntes;
 
-import java.util.concurrent.Semaphore;
-
-public class Comedor {
+public class Plato {
     private int cantidad;
     private int comiendo;
-    private Semaphore sem1;
 
-    public Comedor(int maximo) {
+    public Plato(int maximo) {
         cantidad = maximo;
         comiendo = 0;
-        sem1 = new Semaphore(1);
     }
 
-    public synchronized void comer(String nombre, boolean esPerro) {
-        while (condition) {
-            permits
-        }
+    public synchronized void empezarAComer(String nombre) {
         try {
             while (comiendo >= cantidad) {
                 System.out.println(nombre + "debe esperar para comer");
@@ -28,7 +21,7 @@ public class Comedor {
         comiendo++;
     }
 
-    public synchronized void dejarDeComer(String nombre) {
+    public synchronized void terminarDeComer(String nombre) {
         System.out.println(nombre + " termino de comer");
         comiendo--;
         this.notify();
