@@ -1,8 +1,11 @@
 package Ejercicio1;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
-        Matematica matematica = new Matematica(3.0, 2.0, 1.0);
+        Matematica matematica = new Matematica(new Random().nextInt(10), new Random().nextInt(10),
+                new Random().nextInt(10));
         Thread[] threads = new Thread[2];
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new Thread(new Funciones(matematica, i), "HILO " + i);

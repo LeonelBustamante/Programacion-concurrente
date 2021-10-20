@@ -4,9 +4,9 @@ public class Funciones implements Runnable {
     private int operacion; // Variable
     private Matematica matematica; // Recurso compartido
 
-    public Funciones(Matematica m, int operacion) {
+    public Funciones(Matematica matematica, int operacion) {
         this.operacion = operacion;
-        this.matematica = m;
+        this.matematica = matematica;
     }
 
     @Override
@@ -14,11 +14,11 @@ public class Funciones implements Runnable {
         try {
             if (operacion == 1) {
                 matematica.proceso1();
+                matematica.proceso3();
+                matematica.proceso4();
             } else {
                 matematica.proceso2();
             }
-            matematica.proceso3();
-            matematica.proceso4();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -14,9 +14,6 @@ public class Comedor {
     }
 
     public synchronized void comer(String nombre, boolean esPerro) {
-        while (condition) {
-            permits
-        }
         try {
             while (comiendo >= cantidad) {
                 System.out.println(nombre + "debe esperar para comer");

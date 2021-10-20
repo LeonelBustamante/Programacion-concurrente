@@ -13,9 +13,8 @@ public class Animal implements Runnable {
 
     @Override
     public void run() {
-        comedor.comer(nombre);
+        comedor.comer(nombre, esPerro);
         comedor.dejarDeComer(nombre);
-
     }
 
 }

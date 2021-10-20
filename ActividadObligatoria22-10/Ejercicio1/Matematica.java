@@ -4,19 +4,10 @@ import java.util.concurrent.Semaphore;
 
 public class Matematica {
 
-    private double w;
-    private double x;
-    private double y;
-    private double z;
-    private double a;
-    private double b;
-    private double c;
-    Semaphore sem1;
-    Semaphore sem2;
-    Semaphore sem3;
-    Semaphore sem4;
+    private int w, x, y, z, a, b, c;
+    Semaphore sem1, sem2, sem3, sem4;
 
-    public Matematica(double x, double y, double z) {
+    public Matematica(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -32,14 +23,14 @@ public class Matematica {
     public void proceso1() throws InterruptedException {
         sem1.acquire();
         a = x + y;
-        System.out.println(Thread.currentThread().getName() + " P1 El valor de c despues de a = x + y es: " + a);
+        System.out.println(Thread.currentThread().getName() + " P1 El valor de a despues de a = x + y es: " + a);
         sem3.release();
     }
 
     public void proceso2() throws InterruptedException {
         sem1.acquire();
         b = z - 1;
-        System.out.println(Thread.currentThread().getName() + " P2 El valor de c despues de b = z - 1 es: " + b);
+        System.out.println(Thread.currentThread().getName() + " P2 El valor de b despues de b = z - 1 es: " + b);
         sem3.release();
     }
 
@@ -48,7 +39,6 @@ public class Matematica {
         c = a - b;
         System.out.println(Thread.currentThread().getName() + " P3 El valor de c despues de c = a - b es: " + c);
         sem4.release();
-        sem3.release(2);
     }
 
     public void proceso4() throws InterruptedException {
