@@ -1,12 +1,10 @@
 package Ejercicio2;
 
-import java.util.Random;
-
 public class Empaquetador implements Runnable {
 
-    private Caja caja;
+    private Caja2 caja;
 
-    public Empaquetador(Caja caja) {
+    public Empaquetador(Caja2 caja) {
         this.caja = caja;
     }
 

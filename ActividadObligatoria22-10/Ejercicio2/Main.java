@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         int cantidadBotellasPorCaja = 10;
-        Caja caja = new Caja(cantidadBotellasPorCaja);
+        Caja2 caja = new Caja2(cantidadBotellasPorCaja);
 
         int cantEmpaquetadores = 1, cantEmbotelladores = 3;
         Thread[] threadsEmpaquetadores = new Thread[cantEmpaquetadores];
