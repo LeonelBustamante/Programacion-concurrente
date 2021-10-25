@@ -1,4 +1,4 @@
-package EjercicioChicos.Forma1;
+package ActividadObligatoria.EjercicioChicos.Forma1;
 
 public class t2 implements Runnable {
 

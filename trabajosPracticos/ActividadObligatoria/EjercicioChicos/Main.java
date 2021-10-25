@@ -1,8 +1,8 @@
-package EjercicioChicos;
+package ActividadObligatoria.EjercicioChicos;
 
-import EjercicioChicos.Forma1.Instrucciones;
-import EjercicioChicos.Forma1.t1;
-import EjercicioChicos.Forma1.t2;
+import ActividadObligatoria.EjercicioChicos.Forma1.Instrucciones;
+import ActividadObligatoria.EjercicioChicos.Forma1.t1;
+import ActividadObligatoria.EjercicioChicos.Forma1.t2;
 
 //import ProgrmacionConcurrente.TpObligatorio.Forma1.t1;
 

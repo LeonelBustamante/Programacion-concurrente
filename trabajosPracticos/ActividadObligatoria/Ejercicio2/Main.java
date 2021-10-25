@@ -1,12 +1,12 @@
-package Ejercicio2;
+package ActividadObligatoria.Ejercicio2;
 
 public class Main {
 
     public static void main(String[] args) {
         int cantidadBotellasPorCaja = 10;
-        Caja2 caja = new Caja2(cantidadBotellasPorCaja);
+        Caja caja = new Caja(cantidadBotellasPorCaja);
 
-        int cantEmpaquetadores = 1, cantEmbotelladores = 3;
+        int cantEmpaquetadores = 5, cantEmbotelladores = 3;
         Thread[] threadsEmpaquetadores = new Thread[cantEmpaquetadores];
         Thread[] threadsEmbotelladores = new Thread[cantEmbotelladores];
 
@@ -19,17 +19,5 @@ public class Main {
             threadsEmbotelladores[i] = new Thread(new Embotellador(caja), "Embotellador " + i);
             threadsEmbotelladores[i].start();
         }
-        try {
-            for (int i = 0; i < cantEmpaquetadores; i++) {
-                threadsEmpaquetadores[i].join();
-            }
-
-            for (int i = 0; i < cantEmbotelladores; i++) {
-                threadsEmbotelladores[i].join();
-            }
-
-        } catch (Exception e) {
-        }
-        System.out.println("TERMINO");
     }
 }

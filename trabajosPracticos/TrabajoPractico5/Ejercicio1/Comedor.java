@@ -24,12 +24,12 @@ public class Comedor {
     }
 
     private void pasarTurnoPerro() {
-        System.out.println("Le toca comer a los perros");
+        System.out.println("LE TOCA COMER A LOS PERROS");
         semPerro.release(cantPlatos);
     }
 
     private void pasarTurnoGato() {
-        System.out.println("Le toca comer a los gatos");
+        System.out.println("LE TOCA COMER A LOS GATOS");
         semGato.release(cantPlatos);
     }
 

@@ -1,4 +1,4 @@
-package Ejercicio1;
+package ActividadObligatoria.Ejercicio1;
 
 public class Funciones implements Runnable {
     private int operacion; // Variable

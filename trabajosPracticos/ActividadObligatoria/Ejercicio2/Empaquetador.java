@@ -1,9 +1,10 @@
-package Ejercicio2;
+package ActividadObligatoria.Ejercicio2;
 
-public class Embotellador implements Runnable {
-    private Caja2 caja;
+public class Empaquetador implements Runnable {
 
-    public Embotellador(Caja2 caja) {
+    private Caja caja;
+
+    public Empaquetador(Caja caja) {
         this.caja = caja;
     }
 
@@ -11,9 +12,10 @@ public class Embotellador implements Runnable {
     public void run() {
         while (true) {
             try {
-                caja.embotellar();
+                caja.empaquetar();
             } catch (InterruptedException ex) {
             }
         }
+
     }
 }

@@ -1,4 +1,4 @@
-package Ejercicio1;
+package ActividadObligatoria.Ejercicio1;
 
 import java.util.Random;
 
@@ -17,6 +17,6 @@ public class Main {
             }
         } catch (Exception e) {
         }
-        System.out.println("termino");
+        System.out.println("Termino");
     }
 }

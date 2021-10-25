@@ -1,4 +1,4 @@
-package EjercicioChicos.Forma2;
+package ActividadObligatoria.EjercicioChicos.Forma2;
 
 import java.util.concurrent.Semaphore;
 

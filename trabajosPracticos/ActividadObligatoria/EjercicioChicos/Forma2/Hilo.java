@@ -1,6 +1,4 @@
-package EjercicioChicos.Forma2;
-
-import EjercicioChicos.Forma1.Instrucciones;
+package ActividadObligatoria.EjercicioChicos.Forma2;
 
 public class Hilo implements Runnable {
 
