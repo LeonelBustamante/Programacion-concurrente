@@ -2,7 +2,6 @@ package TrabajoPractico4;
 
 public class TestSync extends Thread {
     private SynchronizedObjectCounter c;
-    private String nombre;
 
     public TestSync(SynchronizedObjectCounter c, String nombre) {
         super(nombre);

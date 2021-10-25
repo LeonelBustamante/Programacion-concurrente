@@ -1,4 +1,4 @@
-package Ejercicio2;
+package ActividadObligatoria.Ejercicio2;
 
 public class Embotellador implements Runnable {
     private Caja caja;

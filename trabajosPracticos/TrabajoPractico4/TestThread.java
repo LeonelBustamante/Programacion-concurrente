@@ -2,7 +2,6 @@ package TrabajoPractico4;
 
 public class TestThread extends Thread {
     private SynchronizedCounter c;
-    private String nombre;
 
     public TestThread(SynchronizedCounter c, String nombre) {
         super(nombre);

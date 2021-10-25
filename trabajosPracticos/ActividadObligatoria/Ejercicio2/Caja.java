@@ -1,4 +1,4 @@
-package Ejercicio2;
+package ActividadObligatoria.Ejercicio2;
 
 import java.util.concurrent.Semaphore;
 
