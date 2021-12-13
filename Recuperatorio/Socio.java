@@ -29,7 +29,7 @@ public class Socio implements Runnable {
 
                 capitulosDisponibles = f.consultarCapitulosDisponibles(idiomaOriginal);
 
-                capituloSeleccionado = new Random().nextInt(1, capitulosDisponibles + 1);
+                capituloSeleccionado = new Random().nextInt( capitulosDisponibles + 1);
 
                 f.mirarCapituloDisponible(capituloSeleccionado, idiomaOriginal);
 
