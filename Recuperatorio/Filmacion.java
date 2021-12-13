@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Filmacion {
 
-    private LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosTraducidos, d;
+    private LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosTraducidos;
 
     private Lock capitulos, traductores, lock;
     private Condition capitulosDisponibles, capitulosATraducir, controlConcurrencia;
@@ -17,7 +17,6 @@ public class Filmacion {
         this.capitulosIdiomaOriginal = new LinkedList();
         this.bufferTraducidos = new LinkedList();
         this.capitulosTraducidos = new LinkedList();
-        this.d = new LinkedList<Integer>();
         this.capitulos = new ReentrantLock();
         this.traductores = new ReentrantLock();
         this.lock = new ReentrantLock();
@@ -145,13 +144,11 @@ public class Filmacion {
         traductores.lock();
 
         try {
-            System.out.println(d);
             while (!(capitulo.getId() == 1) && capitulo.getId() - 1 > ((Capitulo) capitulosTraducidos.getLast()).getId()) {
                 System.out.println(Thread.currentThread().getName() + "ESPERANDO PARA CARGAR " + capitulo.getId());
                 controlConcurrencia.await();
             }
             capitulosTraducidos.add(capitulo);
-            d.add(capitulo.getId());
             System.out.println(Thread.currentThread().getName() + "COLOCADO" + capitulo.getId());
             ultimoTraducido++;
 
