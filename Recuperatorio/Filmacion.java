@@ -6,13 +6,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Filmacion {
 
-    private final LinkedList capitulosIdiomaOriginal, capitulosIdiomaTraducido, capitulosIdiomaTraducidoDisponibles;
+    private final LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosIdiomaTraducidoDisponibles;
     private final Lock capitulos, traductores;
     private int ultimoOriginal, ultimoTraducido;
 
     public Filmacion() {
         this.capitulosIdiomaOriginal = new LinkedList();
-        this.capitulosIdiomaTraducido = new LinkedList();
+        this.bufferTraducidos = new LinkedList();
         this.capitulosIdiomaTraducidoDisponibles = new LinkedList();
         this.capitulos = new ReentrantLock();
         this.traductores = new ReentrantLock();
@@ -44,7 +44,7 @@ public class Filmacion {
          * seleccionado capituloSeleccionado no deberia ser mayor a ultimo en
          * ningun momento
          */
-        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " esta viendo el capitulo " + capituloSeleccionado);
+        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " ESTA VIENDO EL CAPITULO " + capituloSeleccionado);
     }
 
     synchronized void agregarABiblioteca(Capitulo capitulo, int ultimo) {
@@ -53,26 +53,37 @@ public class Filmacion {
          * a la biblioteca para poder ser vista en idioma original. Tambien se
          * agrega a una lista para que sea traducida
          */
-        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " agrego un nuevo capitulo");
+        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " AGREGO UN NUEVO CAPITULO");
         capitulosIdiomaOriginal.add(capitulo);
-        capitulosIdiomaTraducido.add(capitulo);
+        bufferTraducidos.add(capitulo);
         ultimoOriginal++;
-        ultimoTraducido++;
         capitulos.notifyAll();
         traductores.notifyAll();
     }
 
     synchronized Capitulo comenzarATraducir() {
-        while (capitulosIdiomaTraducido.isEmpty()) {
+        /**
+         * Metodo que toma el ultimo capitulo a ser traducido y quita a este del
+         * buffer. Se actualiza la cantidad de ultimo traducido para que los
+         * socio
+         */
+        while (bufferTraducidos.isEmpty()) {
             System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " NO HAY PARA SER TRADUCIDO.");
             traductores.lock();
         }
-        ultimoTraducido++;
-        return (Capitulo) capitulosIdiomaTraducido.pollFirst();
+        Capitulo capituloATraducir = (Capitulo) bufferTraducidos.pollFirst();
+        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " TRADUCIRA." + capituloATraducir.getId());
+        return capituloATraducir;
     }
 
     synchronized void agregarABibliotecaTraducidas(Capitulo capitulo) {
-        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " traducio un nuevo capitulo");
+        /**
+         * Metodo que indica que el Filmador producio una pelicula y agrego esta
+         * a la biblioteca para poder ser vista en idioma original. Tambien se
+         * agrega a una lista para que sea traducida
+         */
+        System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " TRADUCIO UN NUEVO CAPITULO");
+        ultimoTraducido++;
         capitulosIdiomaTraducidoDisponibles.add(capitulo);
         capitulos.notifyAll();
     }
