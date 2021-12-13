@@ -143,13 +143,10 @@ public class Filmacion {
          */
 
         traductores.lock();
-        capitulos.lock();
 
         try {
-            controlConcurrencia.signalAll();
             System.out.println(d);
             while (!(capitulo.getId() == 1) && capitulo.getId() - 1 > ((Capitulo) capitulosTraducidos.getLast()).getId()) {
-                System.out.println(Thread.currentThread().getName());
                 System.out.println(Thread.currentThread().getName() + "ESPERANDO PARA CARGAR " + capitulo.getId());
                 controlConcurrencia.await();
             }
@@ -158,11 +155,13 @@ public class Filmacion {
             System.out.println(Thread.currentThread().getName() + "COLOCADO" + capitulo.getId());
             ultimoTraducido++;
 
+            controlConcurrencia.signalAll();
+            capitulos.lock();
             capitulosDisponibles.signalAll();
+            capitulos.unlock();
 
         } finally {
             traductores.unlock();
-            capitulos.unlock();
         }
     }
 
