@@ -78,9 +78,8 @@ public class Filmacion {
 
     synchronized void agregarABibliotecaTraducidas(Capitulo capitulo) {
         /**
-         * Metodo que indica que el Filmador producio una pelicula y agrego esta
-         * a la biblioteca para poder ser vista en idioma original. Tambien se
-         * agrega a una lista para que sea traducida
+         * Metodo que indica que el fue traducido un capitulo y se actualiza la
+         * variable para poder ser seleccionado este capitulo.
          */
         System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " TRADUCIO UN NUEVO CAPITULO");
         ultimoTraducido++;
