@@ -145,8 +145,6 @@ public class Filmacion {
 
         try {
 
-            System.out.println("++++ SISTEMA: " + Thread.currentThread().getName() + " TRADUCIO");
-
             capitulosIdiomaTraducidoDisponibles.add(capitulo);
             ultimoTraducido++;
 
