@@ -20,7 +20,7 @@ public class Filmacion {
         this.ultimoTraducido = 0;
     }
 
-    synchronized int consultarCapitulosDisponibles(boolean idiomaOriginal) {
+    synchronized int consultarCapitulosDisponibles(boolean idiomaOriginal) {//Metodo para el Socio
         /**
          * Metodo que retorna la cantidad de capitulos disponibles en el idioma
          * que el socio requiere. idiomaOriginal indica si se desea en el idioma
@@ -38,7 +38,7 @@ public class Filmacion {
         return idiomaOriginal ? ultimoOriginal : ultimoTraducido;
     }
 
-    void mirarCapituloDisponible(int capituloSeleccionado) {
+    void mirarCapituloDisponible(int capituloSeleccionado) {//Metodo para el Socio
         /**
          * Metodo que indica que el socio se encuentra viendo el capitulo.
          * seleccionado capituloSeleccionado no deberia ser mayor a ultimo en
@@ -47,7 +47,7 @@ public class Filmacion {
         System.out.println("**SISTEMA: " + Thread.currentThread().getName() + " ESTA VIENDO EL CAPITULO " + capituloSeleccionado);
     }
 
-    synchronized void agregarABiblioteca(Capitulo capitulo, int ultimo) {
+    synchronized void agregarABiblioteca(Capitulo capitulo) {//Metodo para el Filmador
         /**
          * Metodo que indica que el Filmador producio una pelicula y agrego esta
          * a la biblioteca para poder ser vista en idioma original. Tambien se
@@ -61,7 +61,7 @@ public class Filmacion {
         traductores.notifyAll();
     }
 
-    synchronized Capitulo comenzarATraducir() {
+    synchronized Capitulo comenzarATraducir() {//Metodo para el Traductor
         /**
          * Metodo que toma el ultimo capitulo a ser traducido y quita a este del
          * buffer. Se actualiza la cantidad de ultimo traducido para que los
@@ -76,7 +76,7 @@ public class Filmacion {
         return capituloATraducir;
     }
 
-    synchronized void agregarABibliotecaTraducidas(Capitulo capitulo) {
+    synchronized void agregarABibliotecaTraducidas(Capitulo capitulo) {//Metodo para el Traductor
         /**
          * Metodo que indica que el fue traducido un capitulo y se actualiza la
          * variable para poder ser seleccionado este capitulo.

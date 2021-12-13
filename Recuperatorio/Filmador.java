@@ -28,7 +28,7 @@ public class Filmador implements Runnable {
                 produciendoNuevoCapitulo();
                 capitulo = new Capitulo(producidas);
                 System.out.println(Thread.currentThread().getName() + " termine de grabar el capitulo " + producidas);
-                f.agregarABiblioteca(capitulo, producidas);
+                f.agregarABiblioteca(capitulo);
             }
         } catch (Exception e) {
             System.out.println("ERROR EN FILMADOR");

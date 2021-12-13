@@ -16,7 +16,7 @@ public class Main {
 
         int cantidadSocios = 100;
         for (int i = 0; i < cantidadSocios; i++) {
-            new Thread(new Socios(filmacion, new Random().nextBoolean()), "Socio-" + i).start();
+            new Thread(new Socio(filmacion, new Random().nextBoolean()), "Socio-" + i).start();
         }
     }
 
