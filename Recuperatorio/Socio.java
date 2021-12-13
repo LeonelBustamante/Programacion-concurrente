@@ -25,20 +25,17 @@ public class Socio implements Runnable {
         try {
             while (true) {
                 capitulosDisponibles = f.consultarCapitulosDisponibles(idiomaOriginal);
-                capituloSeleccionado = new Random().nextInt(capitulosDisponibles);
-                System.out.println(Thread.currentThread().getName() + " mirara el capitulo " + capituloSeleccionado);
-                f.mirarCapituloDisponible(capituloSeleccionado);
+                capituloSeleccionado = new Random().nextInt(capitulosDisponibles);//CHEQUEARLO
+                f.mirarCapituloDisponible(capituloSeleccionado, idiomaOriginal);
                 mirandoCapitulo();
                 System.out.println(Thread.currentThread().getName() + " termino de ver el capitulo " + capituloSeleccionado);
-
             }
         } catch (Exception e) {
-            System.out.println("Error en Socios");
         }
     }
 
     private void mirandoCapitulo() throws Exception {
-        Thread.sleep(new Random().nextInt(2000));
+        Thread.sleep(new Random().nextInt(200));
     }
 
 }

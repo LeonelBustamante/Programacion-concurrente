@@ -14,9 +14,9 @@ public class Main {
         new Thread(new Traductor(filmacion), "TRADUCTOR-1").start();
         new Thread(new Traductor(filmacion), "TRADUCTOR-2").start();
 
-        int cantidadSocios = 100;
+        int cantidadSocios = 10;
         for (int i = 0; i < cantidadSocios; i++) {
-            new Thread(new Socio(filmacion, new Random().nextBoolean()), "Socio-" + i).start();
+            new Thread(new Socio(filmacion, new Random().nextBoolean()), "SOCIO-" + i).start();
         }
     }
 

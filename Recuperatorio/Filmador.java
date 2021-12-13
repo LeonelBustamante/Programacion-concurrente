@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Filmador implements Runnable {
 
-    private Filmacion f;
+    private final Filmacion f;
 
     public Filmador(Filmacion f) {
         this.f = f;
@@ -26,18 +26,16 @@ public class Filmador implements Runnable {
                 producidas++;
                 System.out.println(Thread.currentThread().getName() + " grabando el capitulo " + producidas);
                 produciendoNuevoCapitulo();
-                capitulo = new Capitulo(producidas);
+                capitulo = new Capitulo(producidas - 1);
                 System.out.println(Thread.currentThread().getName() + " termino de grabar el capitulo " + producidas);
                 f.agregarABiblioteca(capitulo);
             }
         } catch (Exception e) {
-            System.out.println("ERROR EN FILMADOR");
         }
     }
 
     private void produciendoNuevoCapitulo() throws Exception {
-//        Thread.sleep(new Random().nextInt(3000, 5000));
-        Thread.sleep(new Random().nextInt(100));
+        Thread.sleep(new Random().nextInt(300));
     }
 
 }
