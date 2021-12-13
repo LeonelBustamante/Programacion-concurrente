@@ -16,9 +16,12 @@ public class Traductor implements Runnable {
             while (true) {
 
                 capituloTraduciendo = f.comenzarATraducir();
+
+                System.out.println(Thread.currentThread().getName() + " COMENZO a traducir el capitulo " + capituloTraduciendo.getId());
                 traduciendoCapitulo();
                 capituloTraduciendo.traducida();
-                System.out.println(Thread.currentThread().getName() + " termino de traducir el capitulo " + capituloTraduciendo.getId());
+                System.out.println(Thread.currentThread().getName() + " TERMINO de traducir el capitulo " + capituloTraduciendo.getId());
+                
                 f.agregarABibliotecaTraducidas(capituloTraduciendo);
             }
         } catch (Exception e) {

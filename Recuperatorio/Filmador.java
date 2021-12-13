@@ -20,16 +20,18 @@ public class Filmador implements Runnable {
          * capitulo es el que genera en cada iteración
          */
         int producidas = 0;
-        Capitulo capitulo;
+
         try {
+
             while (true) {
                 producidas++;
                 System.out.println(Thread.currentThread().getName() + " grabando el capitulo " + producidas);
                 produciendoNuevoCapitulo();
-                capitulo = new Capitulo(producidas - 1);
                 System.out.println(Thread.currentThread().getName() + " termino de grabar el capitulo " + producidas);
-                f.agregarABiblioteca(capitulo);
+                
+                f.agregarABiblioteca(new Capitulo(producidas - 1));
             }
+            
         } catch (Exception e) {
         }
     }

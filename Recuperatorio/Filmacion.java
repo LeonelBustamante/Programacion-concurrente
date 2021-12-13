@@ -31,25 +31,25 @@ public class Filmacion {
          * que el socio requiere. idiomaOriginal indica si se desea en el idioma
          * original
          */
-        
+
         capitulos.lock();
-        
+
         try {
             //Metodo que espera al primer capitulo que se genere
             while (ultimoOriginal == 0) {
                 System.out.println("SISTEMA: " + Thread.currentThread().getName() + " ESPERANDO PRIMER CAPITULO ");
                 capitulosDisponibles.await();
             }
-            
+
             //Metodo que espera al primer capitulo traducido que se genere
             while (!idiomaOriginal && ultimoTraducido == 0) {
                 //En caso de verla en idioma original no entra aca
                 System.out.println("SISTEMA: " + Thread.currentThread().getName() + " ESPERANDO PRIMER CAPITULO TRADUCIDO");
                 capitulosDisponibles.await();
             }
-            
+
             return idiomaOriginal ? ultimoOriginal : ultimoTraducido;
-            
+
         } finally {
             capitulos.unlock();
         }
@@ -62,18 +62,18 @@ public class Filmacion {
          * seleccionado capituloSeleccionado no deberia ser mayor a ultimo en
          * ningun momento
          */
-        
+
         lock.lock();
 
         try {
             if (idiomaOriginal) {
-                System.out.println("->SISTEMA: " + Thread.currentThread().getName() 
-                        + " ESTA VIENDO EL CAPITULO " + ((Capitulo) capitulosIdiomaOriginal.get(capituloSeleccionado)).getId() 
+                System.out.println("->SISTEMA: " + Thread.currentThread().getName()
+                        + " VERA EL CAPITULO " + ((Capitulo) capitulosIdiomaOriginal.get(capituloSeleccionado)).getId()
                         + " en español ");
-                
+
             } else {
-                System.out.println("->SISTEMA: " + Thread.currentThread().getName() 
-                        + " ESTA VIENDO EL CAPITULO " + ((Capitulo) capitulosIdiomaOriginal.get(capituloSeleccionado)).getId() 
+                System.out.println("->SISTEMA: " + Thread.currentThread().getName()
+                        + " VERA EL CAPITULO " + ((Capitulo) capitulosIdiomaOriginal.get(capituloSeleccionado)).getId()
                         + " en ingles ");
             }
 
@@ -88,7 +88,7 @@ public class Filmacion {
          * a la biblioteca para poder ser vista en idioma original. Tambien se
          * agrega a una lista para que sea traducida
          */
-        
+
         capitulos.lock();
         traductores.lock();
 
@@ -114,7 +114,7 @@ public class Filmacion {
          * buffer. Se actualiza la cantidad de ultimo traducido para que los
          * socio
          */
-        
+
         traductores.lock();
 
         try {
