@@ -7,19 +7,21 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Filmacion {
 
-    private LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosIdiomaTraducidoDisponibles;
+    private LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosTraducidos;
+
     private Lock capitulos, traductores, lock;
-    private Condition capitulosDisponibles, capitulosATraducir;
+    private Condition capitulosDisponibles, capitulosATraducir, controlConcurrencia;
     private int ultimoOriginal, ultimoTraducido;
 
     public Filmacion() {
         this.capitulosIdiomaOriginal = new LinkedList();
         this.bufferTraducidos = new LinkedList();
-        this.capitulosIdiomaTraducidoDisponibles = new LinkedList();
+        this.capitulosTraducidos = new LinkedList();
         this.capitulos = new ReentrantLock();
         this.traductores = new ReentrantLock();
         this.lock = new ReentrantLock();
         this.capitulosDisponibles = capitulos.newCondition();
+        this.controlConcurrencia = traductores.newCondition();
         this.capitulosATraducir = traductores.newCondition();
         this.ultimoOriginal = 0;
         this.ultimoTraducido = 0;
@@ -73,7 +75,7 @@ public class Filmacion {
 
             } else {
                 System.out.println("->SISTEMA: " + Thread.currentThread().getName()
-                        + " VERA EL CAPITULO " + ((Capitulo) capitulosIdiomaOriginal.get(capituloSeleccionado)).getId()
+                        + " VERA EL CAPITULO " + ((Capitulo) capitulosTraducidos.get(capituloSeleccionado)).getId()
                         + " en ingles ");
             }
 
@@ -123,7 +125,6 @@ public class Filmacion {
                 System.out.println("xxxx SISTEMA: " + Thread.currentThread().getName() + " NO HAY PARA SER TRADUCIDO.");
                 capitulosATraducir.await();
             }
-
             return (Capitulo) bufferTraducidos.pollFirst();
 
         } finally {
@@ -144,8 +145,13 @@ public class Filmacion {
         capitulos.lock();
 
         try {
-
-            capitulosIdiomaTraducidoDisponibles.add(capitulo);
+            listar();
+            while (!(capitulo.getId() == 1) && capitulo.getId() == ((Capitulo) capitulosTraducidos.getLast()).getId()) {
+                System.out.println(Thread.currentThread().getName() + "ESPERANDO PARA CARGAR " + capitulo.getId());
+                controlConcurrencia.await();
+            }
+            capitulosTraducidos.add(capitulo);
+            controlConcurrencia.signal();
             ultimoTraducido++;
 
             capitulosDisponibles.signalAll();
@@ -154,6 +160,14 @@ public class Filmacion {
             traductores.unlock();
             capitulos.unlock();
         }
+    }
+
+    private void listar() {
+        String c = "[";
+        for (int i = 0; i < capitulosTraducidos.size(); i++) {
+            c += ((Capitulo) capitulosTraducidos.get(i)).getId();
+        }
+        c += "]";
     }
 
 }

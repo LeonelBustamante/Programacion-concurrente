@@ -26,11 +26,11 @@ public class Socio implements Runnable {
         try {
 
             while (true) {
-                
+
                 capitulosDisponibles = f.consultarCapitulosDisponibles(idiomaOriginal);
-                
-                capituloSeleccionado = new Random().nextInt(capitulosDisponibles);
-                
+
+                capituloSeleccionado = new Random().nextInt(1, capitulosDisponibles + 1);
+
                 f.mirarCapituloDisponible(capituloSeleccionado, idiomaOriginal);
 
                 System.out.println(Thread.currentThread().getName() + " EMPEZO a ver el capitulo " + capituloSeleccionado);
@@ -43,7 +43,7 @@ public class Socio implements Runnable {
     }
 
     private void mirandoCapitulo() throws Exception {
-        Thread.sleep(new Random().nextInt(200));
+        Thread.sleep(new Random().nextInt(2000));
     }
 
 }

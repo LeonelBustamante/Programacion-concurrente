@@ -37,7 +37,7 @@ public class Filmador implements Runnable {
     }
 
     private void produciendoNuevoCapitulo() throws Exception {
-        Thread.sleep(new Random().nextInt(300));
+        Thread.sleep(new Random().nextInt(3000));
     }
 
 }

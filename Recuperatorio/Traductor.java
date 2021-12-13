@@ -20,8 +20,8 @@ public class Traductor implements Runnable {
                 System.out.println(Thread.currentThread().getName() + " COMENZO a traducir el capitulo " + capituloTraduciendo.getId());
                 traduciendoCapitulo();
                 capituloTraduciendo.traducida();
+
                 System.out.println(Thread.currentThread().getName() + " TERMINO de traducir el capitulo " + capituloTraduciendo.getId());
-                
                 f.agregarABibliotecaTraducidas(capituloTraduciendo);
             }
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class Traductor implements Runnable {
     }
 
     private void traduciendoCapitulo() throws Exception {
-        Thread.sleep(new Random().nextInt(500));
+        Thread.sleep(new Random().nextInt(5000));
     }
 
 }
