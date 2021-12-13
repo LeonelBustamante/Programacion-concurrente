@@ -6,8 +6,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Filmacion {
 
-    private final LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosIdiomaTraducidoDisponibles;
-    private final Lock capitulos, traductores;
+    private LinkedList capitulosIdiomaOriginal, bufferTraducidos, capitulosIdiomaTraducidoDisponibles;
+    private Lock capitulos, traductores;
     private int ultimoOriginal, ultimoTraducido;
 
     public Filmacion() {

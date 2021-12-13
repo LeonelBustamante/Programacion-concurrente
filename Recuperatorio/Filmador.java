@@ -24,10 +24,10 @@ public class Filmador implements Runnable {
         try {
             while (true) {
                 producidas++;
-                System.out.println(Thread.currentThread().getName() + " Me encuentro grabando el capitulo " + producidas);
+                System.out.println(Thread.currentThread().getName() + " grabando el capitulo " + producidas);
                 produciendoNuevoCapitulo();
                 capitulo = new Capitulo(producidas);
-                System.out.println(Thread.currentThread().getName() + " termine de grabar el capitulo " + producidas);
+                System.out.println(Thread.currentThread().getName() + " termino de grabar el capitulo " + producidas);
                 f.agregarABiblioteca(capitulo);
             }
         } catch (Exception e) {
@@ -36,7 +36,8 @@ public class Filmador implements Runnable {
     }
 
     private void produciendoNuevoCapitulo() throws Exception {
-        Thread.sleep(new Random().nextInt(3000, 5000));
+//        Thread.sleep(new Random().nextInt(3000, 5000));
+        Thread.sleep(new Random().nextInt(100));
     }
 
 }
