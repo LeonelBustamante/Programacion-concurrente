@@ -28,10 +28,10 @@ public class Filmador implements Runnable {
                 System.out.println(Thread.currentThread().getName() + " grabando el capitulo " + producidas);
                 produciendoNuevoCapitulo();
                 System.out.println(Thread.currentThread().getName() + " termino de grabar el capitulo " + producidas);
-                
-                f.agregarABiblioteca(new Capitulo(producidas - 1));
+
+                f.agregarABiblioteca(new Capitulo(producidas));
             }
-            
+
         } catch (Exception e) {
         }
     }
